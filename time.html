@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0%;
+            padding: 0%;
+            background-color: black;
+            background: url(./assets/pexels-jaime-reimer-2662116.jpg) no-repeat center center/cover;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.466);
+        }
+
+        .sec-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 500px;
+            width: 500px;
+            font-family: Arial, Helvetica, sans-serif;
+            /* background: url(./assets/moon.jpg) no-repeat center center/cover; */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 50%;
+        }
+
+        .time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        .date {
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 200;
+        }
+
+        /* .weather-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 500px;
+            width: 500px;
+            border-radius: 25%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgba(255, 255, 255, 0.5);
+        } */
+
+        .weather-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            height: 500px;
+            width: 500px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <script>
+
+        // 12 Hour Format Digital Clock
+
+        setInterval(function () {
+            // var hours = document.getElementById("hours");
+            // var minutes = document.getElementById("minutes");
+            // var seconds = document.getElementById("seconds");
+            // var amPm = document.getElementById("am-pm");
+            // var day = document.getElementById("day");
+            // var month = document.getElementById("month");
+            // var currentDate = document.getElementById("current-date");
+            // var year = document.getElementById("year");
+
+            var date = new Date();
+            // var newDay = date.getDay();
+            var newDay = date.toLocaleDateString("en-us", {
+                weekday: "long",
+            })
+            var newMonth = date.toLocaleDateString("en-us", {
+                month: "long",
+            })
+            var newDate = date.getDate();
+            // var newDate = date.toLocaleDateString("en-us", {
+            //     Date: "long",
+            // })
+            var newYear = date.getFullYear();
+
+            var currentHours = date.getHours();
+            var currentSeconds = date.getSeconds();
+            var currentMinutes = date.getMinutes();
+            var amPmValue = 'AM';
+
+            // for 24 hour format u can also remove current hour condition
+
+            if (currentHours > 11) {
+                if (currentHours !== 12) {
+                    currentHours -= 12;
+                }
+                amPmValue = 'PM';
+            }
+
+
+            if (currentHours < 10) {
+                document.getElementById("hours").innerText = "0" + currentHours;
+            }
+            else {
+                document.getElementById("hours").innerText = currentHours;
+            }
+
+
+            if (currentMinutes < 10) {
+                document.getElementById("minutes").innerText = "0" + currentMinutes;
+            } else {
+                document.getElementById("minutes").innerText = currentMinutes;
+            }
+
+
+            if (currentSeconds < 10) {
+                document.getElementById("seconds").innerText = "0" + currentSeconds;
+            } else {
+                document.getElementById("seconds").innerText = currentSeconds;
+            }
+            // minutes.innerText = date.getMinutes();
+            // document.getElementById("seconds").innerText = date.getSeconds();
+            document.getElementById("am-pm").innerText = amPmValue;
+            document.getElementById("day").innerText = newDay;
+            document.getElementById("month").innerText = newMonth;
+            document.getElementById("current-date").innerText = newDate;
+            document.getElementById("year").innerText = newYear;
+        })
+
+        // 24 Hour Format Digital Clock
+
+        // function displayTime() {
+
+        //     var date = new Date();
+        //     var hrs = date.getHours();
+        //     var min = date.getMinutes();
+        //     var sec = date.getSeconds();
+        //     var session = document.getElementById('session')
+
+        //     if (hrs > 11) {
+        //         session.innerHTML = 'PM'
+        //     } else {
+        //         session.innerHTML = 'AM'
+        //     }
+
+        //     document.getElementById('hours').innerHTML = hrs;
+        //     document.getElementById('minutes').innerHTML = min;
+        //     document.getElementById('seconds').innerHTML = sec;
+
+        // }
+        // setInterval(displayTime, 10)
+    </script>
+</head>
+
+<body>
+
+    <!-- <div class="time">
+        <div id="hours">00</div>
+        <div>:</div>
+        <div id="minutes">00</div>
+        <div>:</div>
+        <div id="seconds">00</div>
+        <div id="session"></div>
+    </div> -->
+    <div class="container">
+        <div class="sec-container">
+            <div class="time">
+                <div id="hours"></div>
+                <div>&nbsp;:&nbsp;</div>
+                <div id="minutes"></div>
+                <div>&nbsp;:&nbsp;</div>
+                <div id="seconds"></div>
+                <div>&nbsp;</div>
+                <div id="am-pm"></div>
+            </div>
+            <div class="date">
+                <div id="day"></div>
+                &nbsp;|&nbsp;
+                <div id="month"></div>
+                &nbsp;
+                <div id="current-date"></div>
+                ,&nbsp;
+                <div id="year"></div>
+            </div>
+        </div>
+        <div class="weather-container">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
